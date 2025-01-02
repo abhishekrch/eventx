@@ -1,7 +1,7 @@
 import { Menu, Wallet, X } from "lucide-react";
 import { useState } from "react";
 
-export default function Navigation() {
+export default function Navigation({connectWallet, account}) {
   const [isNavDialogVisible, setIsNavDialogVisible] = useState(false);
 
   function handleMenu() {
@@ -10,8 +10,7 @@ export default function Navigation() {
 
   return (
     <nav
-      className="p-3 flex bg-white justify-between
-    items-center"
+      className="mx-auto py-2 px-4 flex justify-between items-center shadow-md border-b-2 bg-white"
     >
       <a href="#" id="brand" className="flex gap-2 items-center">
         <img src="../../logo2.svg" className="object-cover max-w-12 max-h-12"></img>
@@ -30,9 +29,14 @@ export default function Navigation() {
         className="hidden md:flex gap-2 items-center
           border border-gray-400 px-6 py-2 rounded-lg
         hover:text-primary"
+        onClick={connectWallet}
       >
         <Wallet />
+        {account ? (
+          <p>{`${account.slice(0,6)}...${account.slice(-4)}`}</p>
+        ) : (
         <p>Connect</p>
+        )}
       </button>
 
       <button
@@ -71,13 +75,13 @@ export default function Navigation() {
         </div>
 
         <div className="mt-6">
-          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">
+          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-100 block rounded-lg">
             Concerts
           </a>
-          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">
+          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-100 block rounded-lg">
             Sports
           </a>
-          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">
+          <a href="#" className="font-medium m-3 p-3 hover:bg-gray-100 block rounded-lg">
             Arts & Theatre
           </a>
         </div>
@@ -88,10 +92,15 @@ export default function Navigation() {
           className="mt-6 w-full flex justify-center gap-2 items-center
           border border-gray-400 px-6 py-2 rounded-lg
            hover:border-gray-600"
+           onClick={connectWallet}
         >
           <Wallet />
-          <p>Connect</p>
-        </button>
+        {account ? (
+          <p>{`${account.slice(0,6)}...${account.slice(-4)}`}</p>
+        ) : (
+        <p>Connect</p>
+        )}
+      </button>
         
       </div>
     </nav>
