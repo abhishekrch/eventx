@@ -4,13 +4,16 @@ import "./index.css"
 import Navigation from "./components/Navigation";
 import EventXABI  from "./utils/abis/eventx.json"
 import deployment from "./utils/deployment.json"
+import Cards from "./components/Cards";
 
 function App() {
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(null);
-  const [ occasions, setOccasions] = useState([]);
+  const [occasions, setOccasions] = useState([]);
+  const [toggle, setToggle] = useState(false)
+  const [occasion, setOccasion] = useState({})
 
   const CONTRACT_ADDRESS = deployment.anvil.EventX.address;
 
@@ -31,6 +34,7 @@ function App() {
 
         const totalOccasions = await contract.totalOccasions()
         const occasions = [];
+        // console.log({totalOccasions : totalOccasions.toString()})
 
         for (let i = 1; i <= totalOccasions; i++) {
           const occasion = await contract.getOccasion(i)
@@ -62,13 +66,24 @@ function App() {
         connectWallet={connectWallet}
         account={accounts.length > 0 ? accounts[0] : null}
         />
+       </header>
+
         <div>
           {occasions.map((occasion, index) => (
-            <p key={index}>{occasion.name}</p>
-          ))}
+               <Cards
+               occasion={occasion}
+               id={index + 1}
+               contract={contract}
+               provider={provider}
+               account={accounts}
+               toggle={toggle}
+               setToggle={setToggle}
+               setOccasion={setOccasion}
+               key={index}
+             />
+           ))}
+         </div>
         </div>
-      </header>
-    </div>
     </>
   ) 
 }
