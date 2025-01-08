@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import EventXABI  from "./utils/abis/eventx.json"
 import deployment from "./utils/deployment.json"
 import Cards from "./components/Cards";
+import SeatChart from "./components/SeatChart";
 
 function App() {
   const [provider, setProvider] = useState(null);
@@ -39,6 +40,7 @@ function App() {
         for (let i = 1; i <= totalOccasions; i++) {
           const occasion = await contract.getOccasion(i)
           occasions.push(occasion);
+
         }
         
         setOccasions(occasions);
@@ -83,6 +85,14 @@ function App() {
              />
            ))}
          </div>
+         {toggle && occasion.name &&(
+          <SeatChart
+          occasion={occasion}
+          contract={contract}
+          provider={provider}
+          setToggle={setToggle}
+          /> 
+         )}
         </div>
     </>
   ) 

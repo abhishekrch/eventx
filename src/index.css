@@ -3,7 +3,71 @@
 @tailwind utilities;
 
 @layer components {
-    .table-header {
-      @apply px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider;
-    }
+  .table-header {
+    @apply px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider;
   }
+  .occasion {
+    @apply w-screen h-screen bg-black/70 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .occasion__seating {
+    @apply grid gap-[5px] grid-cols-[repeat(25,_1fr)] 
+        bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 
+        border-[10px] border-solid border-gray-400 rounded-lg 
+        w-[90%] max-w-[1200px] h-[85%] mx-auto my-0 p-5 
+        fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        z-[2] overflow-x-scroll;
+  }
+
+  .occasion__seating h1 {
+    @apply col-span-full row-start-1 text-white font-light;
+  }
+
+  .occasion__close {
+    @apply col-start-[27] col-span-1 row-start-1 w-[35px] h-[35px] bg-white/20 border
+     border-solid border-gray-400 rounded-md cursor-pointer transition-all duration-200 
+     ease-in-out hover:bg-white hover:border-white;
+  }
+
+  .occasion__close img {
+    @apply w-[25px] h-[25px];
+  }
+
+  .occasion__stage,
+  .occasion__spacer--1,
+  .occasion__spacer--2 {
+    @apply flex justify-center items-center bg-gray-400 text-white;
+  }
+
+  .occasion__stage {
+    @apply col-span-full row-start-2 h-[150px] border-[3px] border-solid border-black rounded-b-[24px];
+  }
+
+  .occasion__spacer--1,
+  .occasion__spacer--2 {
+    @apply min-w-[30px] mx-[5px] border border-solid border-black [writing-mode:vertical-lr];
+  }
+
+  .occasion__spacer--1 {
+    @apply col-start-6 col-span-1 row-start-3 row-span-10;
+  }
+
+  .occasion__spacer--2 {
+    @apply col-start-[22] col-span-1 row-start-3 row-span-10;
+  }
+
+  .occasion__seats,
+  .occasion__seats--taken {
+    @apply flex justify-center items-center bg-dark-blue text-white w-[35px] h-[35px] border
+     border-solid border-black rounded-full text-[0.9em] cursor-pointer transition-all duration-200 
+     ease-in-out;
+  }
+
+  .occasion__seats:hover {
+    @apply bg-white text-black text-base font-bold;
+  }
+
+  .occasion__seats--taken {
+    @apply bg-[rgba(34,64,109,0.7)];
+  }
+}
