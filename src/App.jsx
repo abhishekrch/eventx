@@ -6,6 +6,7 @@ import EventXABI  from "./utils/abis/eventx.json"
 import deployment from "./utils/deployment.json"
 import Cards from "./components/Cards";
 import SeatChart from "./components/SeatChart";
+import MetaMaskRequiredPopup from "./components/MetaMaskRequiredPopup";
 
 function App() {
   const [provider, setProvider] = useState(null);
@@ -68,6 +69,7 @@ function App() {
         connectWallet={connectWallet}
         account={accounts.length > 0 ? accounts[0] : null}
         />
+        <MetaMaskRequiredPopup />
        </header>
 
         <div>
